@@ -4,7 +4,7 @@ Este projeto é um template HTML/JS para a renderização do Documento Auxiliar 
 
 ## Como Usar
 
-Para renderizar a sua própria nota, basta editar o arquivo `Impressão Template.html` e injetar os seguintes campos com os dados desejados (status e o conteúdo do XML da nota retornado pela prefeitura/Sefin):
+Para renderizar a sua própria nota, basta editar o arquivo [`Impressão Template.html`](Impress%C3%A3o%20Template.html) e injetar os seguintes campos com os dados desejados (status e o conteúdo do XML da nota retornado pela prefeitura/Sefin):
 
 ```javascript
 var STAUTS_NFSE = ''; // STAUTS_NFSE (Ex: 'CANCELADA', 'SUBSTITUÍDA')
