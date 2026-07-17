@@ -6812,7 +6812,11 @@
             setV('val-serie-dps', dps?.serie);
             setV('val-emissao-dps', dps?.dhEmi ? dps.dhEmi.split('T')[0].split('-').reverse().join('/') + ' ' + dps.dhEmi.split('T')[1].split('-')[0] : '-');
             const fin = dps?.IBSCBS?.finNFSe;
+            if (fin) {
             setV('val-finalidade-dps', fin + " - " + (fin ? (json_finNFSe[parseInt(fin)] || fin + ' - Desconhecido') : '-'));
+            } else {
+            setV('val-finalidade-dps', '-');
+            }
             // Emitente
             const emit = inf?.emit;
             const emitEnd = emit?.enderNac;
