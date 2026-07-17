@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
+<!--https://www.nfse.gov.br/ConsultaPublica/Scripts/Base?v=P-KH1yk9MfvY1PNZhBdVy2YTrxRfupmppGJ4S1Ahb401-->
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <title>DANFSe - Padrão Nacional</title>
     <style>
@@ -22,13 +22,11 @@
             border: 1pt #000 solid;
             
             /* Trava o DANFSe nas proporções exatas (não atropela em telas pequenas) */
-            width: 20.40cm;
-            min-width: 20.40cm;
-            max-width: 20.40cm;
+            width: 25.40cm;
+            min-width: 25.40cm;
+            max-width: 25.40cm;
             
-            /* Bloqueia zoom por pinça (mobile) permitindo apenas scroll */
-            touch-action: pan-x pan-y;
-            -ms-content-zooming: none;
+    
         }
 
         @media print {
@@ -36,16 +34,17 @@
                 background-color: #FFFFFF;
             }
             body {
+                -webkit-print-color-adjust: exact; /* Chrome/Safari */
+                print-color-adjust: exact;         /* Padrão moderno */
                 margin: 0;
                 padding: 0;
                 border: none;
                 box-shadow: none;
-                width: 100%;
-                min-width: auto;
+                //width: 96%;
                 max-width: none;
             }
             .watermark {
-                display: none !important; /* Opcional: oculta a marca d'água na impressão se desejar, mas deixaremos de fora */
+               // display: none !important; /* Opcional: oculta a marca d'água na impressão se desejar, mas deixaremos de fora */
             }
         }
 
@@ -148,15 +147,15 @@
 
         .watermark {
             position: fixed;
-            top: 35%;
+            top: 30%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 85pt;
+            transform: translate(-60%, 50%) rotate(-45deg);
+            font-size: 65pt;
             font-weight: normal;
             color: rgba(200, 200, 200, 0.6);
             z-index: 1000;
             pointer-events: none;
-            white-space: nowrap;
+            
         }
     </style>
 </head>
@@ -239,13 +238,13 @@
                     <tr>
                         <td style="font-size: 7pt;">
                             <span>Ambiente Gerador:</span>
-							<span id="val-ambiente-gerador"></span>
+                            <span id="val-ambiente-gerador"></span>
                         </td>
                     </tr>
-					<tr>
+                    <tr>
                         <td style="font-size: 7pt;">
                             <span>Tipo de Ambiente:</span>
-							<span id="val-tipo-ambiente"></span>
+                            <span id="val-tipo-ambiente"></span>
                         </td>
                     </tr>
                 </table>
@@ -319,7 +318,7 @@
     </div>
 
     <div class="bordered-section">
-        <table>
+        <table style="min-height: 120px;">
             <tr>
                 <td class="section-header" style="width: 25%;">
                     <span class="section-title">PRESTADOR / FORNECEDOR</span>
@@ -329,7 +328,7 @@
                     <span class="value" id="val-emi-cnpj"></span>
                 </td>
                 <td style="width: 25%;">
-                    <span class="label">Inscrição Municipal</span>
+                    <span class="label">Indicador Municipal (Inscrição)</span>
                     <span class="value" id="val-emi-im"></span>
                 </td>
                 <td style="width: 25%;">
@@ -379,13 +378,13 @@
             <tr>
                 <td class="section-header td-contingencia"
                     style="width: 100%; text-align: center; vertical-align: middle;">
-                    <span class="label">TOMADOR/ADQUIRENTE DA OPERAÇÃO NÃO IDENTIFICADO NA NFS-e</span>
+                    <span>TOMADOR/ADQUIRENTE DA OPERAÇÃO NÃO IDENTIFICADO NA NFS-e</span>
                 </td>
             </tr>
         </table>
     </div>
     <div class="bordered-section" id="bloco-tomador">
-        <table>
+        <table style="min-height: 120px;">
             <tr>
                 <td class="section-header" style="width: 25%;">
                     <span class="section-title">TOMADOR / ADQUIRENTE</span>
@@ -395,7 +394,7 @@
                     <span class="value" id="val-tom-cnpj"></span>
                 </td>
                 <td style="width: 25%;">
-                    <span class="label">Inscrição Municipal</span>
+                    <span class="label">Indicador Municipal (Inscrição)</span>
                     <span class="value" id="val-tom-im"></span>
                 </td>
                 <td colspan="2" style="width: 25%;">
@@ -435,7 +434,7 @@
             <tr>
                 <td class="section-header td-contingencia"
                     style="width: 100%; text-align: center; vertical-align: middle;">
-                    <span class="label">DESTINATÁRIO DA OPERAÇÃO NÃO IDENTIFICADO NA NFS-e</span>
+                    <span>DESTINATÁRIO DA OPERAÇÃO NÃO IDENTIFICADO NA NFS-e</span>
                 </td>
             </tr>
         </table>
@@ -446,7 +445,7 @@
             <tr>
                 <td class="section-header td-contingencia"
                     style="width: 100%; text-align: center; vertical-align: middle;">
-                    <span class="label">O DESTINATÁRIO É O PRÓPRIO TOMADOR/ADQUIRENTE DA OPERAÇÃO</span>
+                    <span>O DESTINATÁRIO É O PRÓPRIO TOMADOR/ADQUIRENTE DA OPERAÇÃO</span>
                 </td>
             </tr>
         </table>
@@ -499,7 +498,7 @@
             <tr>
                 <td class="section-header td-contingencia"
                     style="width: 100%; text-align: center; vertical-align: middle;">
-                    <span class="label">INTERMEDIÁRIO DA OPERAÇÃO NÃO IDENTIFICADO NA NFS-e</span>
+                    <span>INTERMEDIÁRIO DA OPERAÇÃO NÃO IDENTIFICADO NA NFS-e</span>
                 </td>
             </tr>
         </table>
@@ -516,7 +515,7 @@
                     <span class="value" id="val-int-cnpj"></span>
                 </td>
                 <td style="width: 25%;">
-                    <span class="label">Inscrição Municipal</span>
+                    <span class="label">Indicador Municipal (Inscrição)</span>
                     <span class="value" id="val-int-im"></span>
                 </td>
                 <td style="width: 25%;">
@@ -586,7 +585,7 @@
             <tr>
                 <td class="section-header td-contingencia"
                     style="width: 100%; text-align: center; vertical-align: middle;">
-                    <span class="label">TRIBUTAÇÃO MUNICIPAL (ISSQN) - OPERAÇÃO NÃO SUJEITA AO ISSQN</span>
+                    <span>TRIBUTAÇÃO MUNICIPAL (ISSQN) - OPERAÇÃO NÃO SUJEITA AO ISSQN</span>
                 </td>
             </tr>
         </table>
@@ -675,11 +674,11 @@
                     <span class="value"><span class="value" id="val-trib-fed-irrf"></span></span>
                 </td>
                 <td style="width: 25%;">
-                    <span class="label">Contribuição Prev. - Retida</span>
+                    <span class="label">Contribuição Previdenciária – Retida</span>
                     <span class="value"><span class="value" id="val-trib-fed-cp"></span></span>
                 </td>
                 <td style="width: 25%;">
-                    <span class="label">Contrib. Sociais - Retidas</span>
+                    <span class="label">Contribuições Sociais – Retidas</span>
                     <span class="value"><span class="value" id="val-trib-fed-cs"></span></span>
                 </td>
             </tr>
@@ -689,11 +688,11 @@
                     <span class="value"><span class="value" id="val-trib-fed-pis"></span></span>
                 </td>
                 <td colspan="1">
-                    <span class="label">COFINS - Débito Apuração Própria</span>
+                    <span class="label">COFINS – Débito Apuração Própria</span>
                     <span class="value"><span class="value" id="val-trib-fed-cofins"></span></span>
                 </td>
                 <td colspan="2" style="width: 50%;">
-                    <span class="label">Descrição Contrib. Sociais - Retidas</span>
+                    <span class="label">Descrição das Contribuições Sociais – Retidas</span>
                     <span class="value" id="val-trib-fed-desc-cs"></span>
                 </td>
             </tr>
@@ -816,15 +815,57 @@
     <div class="bordered-section">
         <table>
             <tr>
-                <td class="section-header">
+                <td style="font-weight: bold; font-size: 9pt;width: 50%; padding: 4pt;">
                     <span class="section-title">INFORMAÇÕES COMPLEMENTARES</span>
                 </td>
             </tr>
             <tr>
                 <td style="min-height: 30pt; padding: 5pt;">
                     <span class="value">
-                        <span id="val-info-comp"></span><br>
-						<span id="bloco-trib-ibpt">Totais Aproximados dos Tributos cfe. Lei nº 12.741/2012: Federais: <span id="val-aprox-fed"></span>; Estaduais: <span id="val-aprox-est"></span>; Municipais: <span id="val-aprox-mun"></span></span>
+                        <span id="bloco-val-info-comp" style="display: none;">
+                            <span class="value" style="font-weight: bold;">Inf. Cont.:</span>
+                            <span id="val-info-comp"></span>;<br>
+                        </span>
+                        <span id="bloco-val-info-comp_Subst" style="display: none;">
+                            <span class="value" style="font-weight: bold;">NFS-e Subst.:</span>
+                            <span id="val-info-comp_Subst"></span>;<br>
+                        </span>
+                        <span id="bloco-val-info-comp_Doc" style="display: none;">
+                            <span class="value" style="font-weight: bold;">Doc. Ref.:</span>
+                            <span id="val-info-comp_Doc"></span>;<br>
+                        </span>
+                        <span id="bloco-val-info-comp_Obra" style="display: none;">
+                            <span class="value" style="font-weight: bold;">Cod. Obra:</span>
+                            <span id="val-info-comp_Obra"></span>;<br>
+                        </span>
+                        <span id="bloco-val-info-comp_Imob" style="display: none;">
+                            <span class="value" style="font-weight: bold;">Insc. Imob.:</span>
+                            <span id="val-info-comp_Imob"></span>;<br>
+                        </span>
+                        <span id="bloco-val-info-comp_Evt" style="display: none;">
+                            <span class="value" style="font-weight: bold;">Cod. Evt.:</span>
+                            <span id="val-info-comp_Evt"></span>;<br>
+                        </span>
+                        <span id="bloco-val-info-comp_Tec" style="display: none;">
+                            <span class="value" style="font-weight: bold;">Doc. Tec.:</span>
+                            <span id="val-info-comp_Tec"></span>;<br>
+                        </span>
+                        <span id="bloco-val-info-comp_NPed" style="display: none;">
+                            <span class="value" style="font-weight: bold;">Núm. Ped.:</span>
+                            <span id="val-info-comp_NPed"></span>;<br>
+                        </span>
+                        <span id="bloco-val-info-comp_IPed" style="display: none;">
+                            <span class="value" style="font-weight: bold;">Item Ped.:</span>
+                            <span id="val-info-comp_IPed"></span>;<br>
+                        </span>
+                        <span id="bloco-val-info-comp_ATMun" style="display: none;">
+                            <span class="value" style="font-weight: bold;">Inf. A. T. Mun.:</span>
+                            <span id="val-info-comp_ATMun"></span>;<br>
+                        </span>
+                        <span class="value" style="font-weight: bold;">Totais Aproximados dos Tributos cfe. Lei nº 12.741/2012: </span>
+                        <span class="value">Federais: </span><span id="val-aprox-fed"></span>; 
+                        <span class="value">Estaduais: </span><span id="val-aprox-est"></span>; 
+                        <span class="value">Municipais: </span><span id="val-aprox-mun"></span>;
                     </span>
                 </td>
             </tr>
@@ -858,30 +899,28 @@
     <script>
         function xmlNodeToJson(node) {
             if (node.nodeType === Node.TEXT_NODE || node.nodeType === Node.CDATA_SECTION_NODE) {
-                let text = node.textContent.trim() || null;
+                var text = node.textContent.trim() || null;
                 if (text) {
                     try {
-                        // Tenta corrigir problemas de encoding (ex: "hotÃ©is" -> "hotéis")
                         text = decodeURIComponent(escape(text));
                     } catch (e) {
-                        // Mantém original se a conversão falhar
                     }
                 }
                 return text;
             }
 
             if (node.nodeType === Node.ELEMENT_NODE) {
-                const obj = {};
+                var obj = {};
                 if (node.attributes.length > 0) {
                     obj["@attributes"] = {};
                     Array.from(node.attributes).forEach(attr => {
-                        obj["@attributes"][attr.name] = attr.value;
+                        obj['@attributes'][attr.name] = attr.value;
                     });
                 }
                 const children = Array.from(node.childNodes);
                 if (children.length > 0) {
                     children.forEach(child => {
-                        let childJson = xmlNodeToJson(child);
+                        var childJson = xmlNodeToJson(child);
                         if (childJson === null) return;
 
                         const childName = child.nodeName;
@@ -957,8 +996,20 @@
         };
         json_finNFSe = {
             0: "NFS-e Regular",
-			1: "NFS-e de crédito",
-			2: "NFS-e de débito" 
+            1: "NFS-e de crédito",
+            2: "NFS-e de débito" 
+        };
+        json_RetPisCofins = {
+        0: "PIS/COFINS/CSLL Não Retidos",
+        1: "PIS/COFINS Retido",
+        2: "PIS/COFINS Não Retido",
+        3: "PIS/COFINS/CSLL Retidos",
+        4: "PIS/COFINS Retidos, CSLL Não Retido",
+        5: "PIS Retido, COFINS/CSLL Não Retido",
+        6: "COFINS Retido, PIS/CSLL Não Retido",
+        7: "PIS Não Retido, COFINS/CSLL Retidos",
+        8: "PIS/COFINS Não Retidos, CSLL Retido",
+        9: "COFINS Não Retido, PIS/CSLL Retidos"
         };
         json_estado_ibge_uf = {
             12: 'AC',
@@ -6563,10 +6614,10 @@
             1722107: "Xambioá / TO"
         };
 
-        var STAUTS_NFSE = ''; //STAUTS_NFSE (CANCELADA, SUBUSTITUÍDA)
-        const xmlString = '<?xml version="1.0" encoding="UTF-8"?><NFSe xmlns="http://www.sped.fazenda.gov.br/nfse" versao="1.01"><infNFSe Id="NFS12004012214361411000117000000000242726054979068490"><xLocEmi>Rio Branco</xLocEmi><xLocPrestacao>Rio Branco</xLocPrestacao><nNFSe>2427</nNFSe><cLocIncid>1200401</cLocIncid><xLocIncid>Rio Branco</xLocIncid><xTribNac>Hospedagem em hotÃ©is, hotelaria marÃ­tima e congÃªneres (o valor da alimentaÃ§Ã£o e gorjeta, quando incluÃ­do no preÃ§o da diÃ¡ria, fica sujeito ao Imposto Sobre ServiÃ§os).</xTribNac><xNBS>ServiÃ§os de hospedagem em quartos ou unidades de hospedagem para visitantes, com serviÃ§os diÃ¡rios de faxina</xNBS><verAplic>SefinNacional_1.6.0</verAplic><ambGer>2</ambGer><tpEmis>1</tpEmis><procEmi>1</procEmi><cStat>100</cStat><dhProc>2026-05-20T05:32:40-03:00</dhProc><nDFSe>1448618</nDFSe><emit><CNPJ>14361411000117</CNPJ><IM>14361411000117</IM><xNome>NORTE BUSINESS HOTELARIA E TURISMO LTDA</xNome><enderNac><xLgr>CEARA</xLgr><nro>2156</nro><xBairro>BOSQUE</xBairro><cMun>1200401</cMun><UF>AC</UF><CEP>69900379</CEP></enderNac><fone>6832273020</fone><email>financeiro1.nsrb@nobilehoteis.com.br</email></emit><valores><vBC>693.00</vBC><pAliqAplic>5.00</pAliqAplic><vISSQN>34.65</vISSQN><vLiq>693.00</vLiq></valores><IBSCBS><cLocalidadeIncid>1200401</cLocalidadeIncid><xLocalidadeIncid>Rio Branco</xLocalidadeIncid><valores><vBC>658.35</vBC><vCalcReeRepRes>0.00</vCalcReeRepRes><uf><pIBSUF>0.10</pIBSUF><pRedAliqUF>40.00</pRedAliqUF><pAliqEfetUF>0.06</pAliqEfetUF></uf><mun><pIBSMun>0.00</pIBSMun><pRedAliqMun>40.00</pRedAliqMun><pAliqEfetMun>0.00</pAliqEfetMun></mun><fed><pCBS>0.90</pCBS><pRedAliqCBS>40.00</pRedAliqCBS><pAliqEfetCBS>0.54</pAliqEfetCBS></fed></valores><totCIBS><vTotNF>693.00</vTotNF><gIBS><vIBSTot>0.40</vIBSTot><gIBSUFTot><vIBSUF>0.40</vIBSUF></gIBSUFTot><gIBSMunTot><vIBSMun>0.00</vIBSMun></gIBSMunTot></gIBS><gCBS><vCBS>3.56</vCBS></gCBS></totCIBS></IBSCBS><DPS xmlns="http://www.sped.fazenda.gov.br/nfse" versao="1.01"><infDPS Id="DPS120040121436141100011700001000000000067108"><tpAmb>1</tpAmb><dhEmi>2026-05-20T03:32:21-05:00</dhEmi><verAplic>Enfe-17.17</verAplic><serie>1</serie><nDPS>67108</nDPS><dCompet>2026-05-20</dCompet><tpEmit>1</tpEmit><cLocEmi>1200401</cLocEmi><prest><CNPJ>14361411000117</CNPJ><IM>14361411000117</IM><email>reservas.nsrb@nobilehoteis.com.br</email><regTrib><opSimpNac>1</opSimpNac><regEspTrib>0</regEspTrib></regTrib></prest><toma><CNPJ>92791243000103</CNPJ><xNome>IRANI PAPEL E EMBALAGEM S.A.</xNome><end><endNac><cMun>4314902</cMun><CEP>90480900</CEP></endNac><xLgr>CARLOS GOMES</xLgr><nro>400</nro><xCpl>SALA 502/503</xCpl><xBairro>BOA VISTA</xBairro></end><fone>5133033893</fone></toma><serv><locPrest><cLocPrestacao>1200401</cLocPrestacao></locPrest><cServ><cTribNac>090101</cTribNac><xDescServ>DIARIA - 330.00 X 2 = 660.00 | Tx ISS - 16.50 X 2 = 33.00</xDescServ><cNBS>103031100</cNBS></cServ><infoCompl><xInfComp>Titular: CORINA PEDERSOLI|In: 18 a Out: 20/05/2026|UH: 707|Razao: 46149|Reserva: 597401ID20553369</xInfComp></infoCompl></serv><valores><vServPrest><vServ>693.00</vServ></vServPrest><trib><tribMun><tribISSQN>1</tribISSQN><tpRetISSQN>1</tpRetISSQN></tribMun><tribFed><piscofins><CST>06</CST><vBCPisCofins>660.00</vBCPisCofins><pAliqPis>0.00</pAliqPis><pAliqCofins>0.00</pAliqCofins><vPis>0.00</vPis><vCofins>0.00</vCofins><tpRetPisCofins>0</tpRetPisCofins></piscofins></tribFed><totTrib><pTotTrib><pTotTribFed>15.45</pTotTribFed><pTotTribEst>0.00</pTotTribEst><pTotTribMun>5.00</pTotTribMun></pTotTrib></totTrib></trib></valores><IBSCBS><finNFSe>0</finNFSe><indFinal>0</indFinal><cIndOp>030101</cIndOp><indDest>0</indDest><valores><trib><gIBSCBS><CST>200</CST><cClassTrib>200048</cClassTrib></gIBSCBS></trib></valores></IBSCBS></infDPS><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#DPS120040121436141100011700001000000000067108"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>2mDfmIcoC5V+Wd9Zi6eWn3iY+E0=</DigestValue></Reference></SignedInfo><SignatureValue>c1h3PXcis44+5fJhtqcqQkxUpz193Mpy98LTM7nDhumHanhcF4OphYJwEXO5d8wwONiyVhkIzy6f43ncQMll4cJFLDmr3teIKTjruiRji9ofb8wpUfPbtWYeLVH10zBGiPOoGahbfVhstJ7x8iE+O2FlSBdur4xSssN79DashqhYPypfcRXqunQU4jUzaKtTfacpTFlUlA6U3IpG1O9zusseKST8M+g9ebxXdKx4nO6vIkgb5WuOBaqJdx7P8mEDuvORPjbgUEEyMMgQyVwO4PaXza92AT4hLb61AVEWufvPKvk39VdmiK+Rwyo5czJawSue7KgaR/+mfLbRSAiq1A==</SignatureValue><KeyInfo><X509Data><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></DPS></infNFSe><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#NFS12004012214361411000117000000000242726054979068490"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#WithComments"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>RAmSMVybvL3LUPtaiX6Gp46DNOBBRequ7Eq5CKQ3toE=</DigestValue></Reference></SignedInfo><SignatureValue>LgbpFXZnLBIhEdFE3vPV1pfvlFG9ZdoFA9eBNIkdvjeqHZ3pKfFz+Hqy2EYqJMZTbL8j6DDCjWfzdRRCWhXqyHHSMrc8+vwgzcgdQidgtxyTizKJjOowZUs5MzBsp365qjFH4+WMkYiBu5k8GivCYdJnXB6/N9pkSWNBtuV42KZNbI4mgyWtEQrnaGIte/KK63ONKHN/gIqn/xqUeujUrTQYrj0FQxWOQ41f3z8cpK/qycA/jPh9V8N/NNA8ThmsQj5Bq3QMU9bIF7gzD3qF51K/wiePUnotS8mrSdiQ7Z7lJlczF714wg7fp90pVGBfj2EvcPTrUmNyeLpjH2UCtQ==</SignatureValue><KeyInfo><X509Data><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></NFSe>';
-        
-		const parser = new DOMParser();
+        var STAUTS_NFSE = '';
+        //STAUTS_NFSE (CANCELADA, SUBUSTITUÍDA)
+		const xmlString = '<?xml version="1.0" encoding="UTF-8"?><NFSe xmlns="http://www.sped.fazenda.gov.br/nfse" versao="1.01"><infNFSe Id="NFS12004012214361411000117000000000242726054979068490"><xLocEmi>Cidade</xLocEmi><xLocPrestacao>Cidade</xLocPrestacao><nNFSe>3</nNFSe><cLocIncid>1200401</cLocIncid><xLocIncid>Rio Branco</xLocIncid><xTribNac>Hospedagem em hotÃ©is, hotelaria marÃ­tima e congÃªneres (o valor da alimentaÃ§Ã£o e gorjeta, quando incluÃ­do no preÃ§o da diÃ¡ria, fica sujeito ao Imposto Sobre ServiÃ§os).</xTribNac><xNBS>ServiÃ§os de hospedagem em quartos ou unidades de hospedagem para visitantes, com serviÃ§os diÃ¡rios de faxina</xNBS><verAplic>SefinNacional_1.6.0</verAplic><ambGer>2</ambGer><tpEmis>1</tpEmis><procEmi>1</procEmi><cStat>100</cStat><dhProc>2026-05-20T05:32:40-03:00</dhProc><nDFSe>2</nDFSe><emit><CNPJ>12345678001000</CNPJ><IM>00001</IM><xNome>estabelecimento</xNome><enderNac><xLgr>RUA</xLgr><nro>1</nro><xBairro>BAIRRO</xBairro><cMun>1234567</cMun><UF>AC</UF><CEP>12345678</CEP></enderNac><fone>1100273020</fone><email>teste@teste.com.br</email></emit><valores><vBC>693.00</vBC><pAliqAplic>5.00</pAliqAplic><vISSQN>34.65</vISSQN><vLiq>693.00</vLiq></valores><IBSCBS><cLocalidadeIncid>1200401</cLocalidadeIncid><xLocalidadeIncid>Rio Branco</xLocalidadeIncid><valores><vBC>658.35</vBC><vCalcReeRepRes>0.00</vCalcReeRepRes><uf><pIBSUF>0.10</pIBSUF><pRedAliqUF>40.00</pRedAliqUF><pAliqEfetUF>0.06</pAliqEfetUF></uf><mun><pIBSMun>0.00</pIBSMun><pRedAliqMun>40.00</pRedAliqMun><pAliqEfetMun>0.00</pAliqEfetMun></mun><fed><pCBS>0.90</pCBS><pRedAliqCBS>40.00</pRedAliqCBS><pAliqEfetCBS>0.54</pAliqEfetCBS></fed></valores><totCIBS><vTotNF>693.00</vTotNF><gIBS><vIBSTot>0.40</vIBSTot><gIBSUFTot><vIBSUF>0.40</vIBSUF></gIBSUFTot><gIBSMunTot><vIBSMun>0.00</vIBSMun></gIBSMunTot></gIBS><gCBS><vCBS>3.56</vCBS></gCBS></totCIBS></IBSCBS><DPS xmlns="http://www.sped.fazenda.gov.br/nfse" versao="1.01"><infDPS Id="DPS120040121436141100011700001000000000060000"><tpAmb>1</tpAmb><dhEmi>2026-05-20T03:32:21-05:00</dhEmi><verAplic>Enfe-17.17</verAplic><serie>1</serie><nDPS>2</nDPS><dCompet>2026-05-20</dCompet><tpEmit>1</tpEmit><cLocEmi>1200401</cLocEmi><prest><CNPJ>12345678900101</CNPJ><IM>000000001</IM><email>teste@teste.com.br</email><regTrib><opSimpNac>1</opSimpNac><regEspTrib>0</regEspTrib></regTrib></prest><toma><CNPJ>12345678901003</CNPJ><xNome>CLIENTE</xNome><end><endNac><cMun>1234567</cMun><CEP>12340900</CEP></endNac><xLgr>CARLOS</xLgr><nro>0</nro><xCpl>SALA</xCpl><xBairro>BOA</xBairro></end><fone>1112341234</fone></toma><serv><locPrest><cLocPrestacao>1200401</cLocPrestacao></locPrest><cServ><cTribNac>090101</cTribNac><xDescServ>DIARIA - 330.00 X 2 = 660.00 | Tx ISS - 16.50 X 2 = 33.00</xDescServ><cNBS>103031100</cNBS></cServ><infoCompl><xInfComp>Titular: CORINA|In: 18 a Out: 01/00/2026|UH: 707|Razao: 46149|Reserva: 59740</xInfComp></infoCompl></serv><valores><vServPrest><vServ>693.00</vServ></vServPrest><trib><tribMun><tribISSQN>1</tribISSQN><tpRetISSQN>1</tpRetISSQN></tribMun><tribFed><piscofins><CST>06</CST><vBCPisCofins>660.00</vBCPisCofins><pAliqPis>0.00</pAliqPis><pAliqCofins>0.00</pAliqCofins><vPis>0.00</vPis><vCofins>0.00</vCofins><tpRetPisCofins>0</tpRetPisCofins></piscofins></tribFed><totTrib><pTotTrib><pTotTribFed>15.45</pTotTribFed><pTotTribEst>0.00</pTotTribEst><pTotTribMun>5.00</pTotTribMun></pTotTrib></totTrib></trib></valores><IBSCBS><finNFSe>0</finNFSe><indFinal>0</indFinal><cIndOp>030101</cIndOp><indDest>0</indDest><valores><trib><gIBSCBS><CST>200</CST><cClassTrib>200048</cClassTrib></gIBSCBS></trib></valores></IBSCBS></infDPS></DPS></infNFSe></NFSe>';
+        const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlString, "text/xml");
         if (xmlDoc.querySelector("parsererror")) {
             throw new Error("Invalid XML: " + xmlDoc.querySelector("parsererror").textContent);
@@ -6620,7 +6671,7 @@
         }
 
         function setM(id, value) {
-            let formattedValue = "-";
+            var formattedValue = "-";
             if (value !== undefined && value !== null && value !== "" && value !== "-") {
                 const num = parseFloat(value);
                 if (!isNaN(num) && (num > 0 || (num === 0 && CONFIG_DANFSE.exibirZeroComoPadrao))) {
@@ -6638,6 +6689,40 @@
             if (s.length === 14) return s.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
             return doc;
         }
+        function fmtNBS(nbs) {
+            if (!nbs) return '-';
+            const s = String(nbs).replace(/\D/g, '');
+            if (s.length === 8) return s.replace(/(\d{4})(\d{2})(\d{2})/, "0.$1.$2.$3");
+            if (s.length === 9) return s.replace(/(\d{1})(\d{4})(\d{2})(\d{2})/, "$1.$2.$3.$4");
+            return nbs;
+        }
+        function fmtcTribNac(TribNac) {
+            if (!TribNac) return '-';
+            const s = String(TribNac).replace(/\D/g, '');
+            if (s.length === 5) return s.replace(/(\d{1})(\d{2})(\d{2})/, "0$1.$2.$3");
+            if (s.length === 6) return s.replace(/(\d{2})(\d{2})(\d{2})/, "$1.$2.$3");
+            return TribNac;
+        }
+        function fmtcTribMun(TribMun) {
+            if (!TribMun) return '-';
+            const s = String(TribMun).replace(/\D/g, '');
+            if (s.length === 1) return "00" + s;
+            if (s.length === 2) return "0" + s;
+            return TribMun;
+        }
+        function fmtcIndOp(IndOp) {
+            if (!IndOp) return '-';
+            const s = String(IndOp).replace(/\D/g, '');
+            if (s.length === 5) return "0" + s;
+            return IndOp;
+        }
+        function fmtIBGE(IBGE) {
+            if (!IBGE) return '-';
+            const s = String(IBGE).replace(/\D/g, '');
+            if (s.length === 6) return "0" + s;
+            return IBGE;
+        }
+
 
         function fmtTelefone(fone) {
             if (!fone) return '-';
@@ -6652,13 +6737,14 @@
         function fmtCEP(cep) {
             if (!cep) return '-';
             const s = String(cep).replace(/\D/g, '');
-            if (s.length === 8) return s.replace(/(\d{5})(\d{3})/, "$1-$2");
+            if (s.length === 7) return s.replace(/(\d{1})(\d{3})(\d{3})/, "0$1.$2-$3");
+            if (s.length === 8) return s.replace(/(\d{2})(\d{3})(\d{3})/, "$1.$2-$3");
             return cep;
         }
 
         function fmtEndereco(end) {
             if (!end) return '-';
-            let str = end.xLgr || '';
+            var str = end.xLgr || '';
             if (end.nro) str += ', ' + end.nro;
             if (end.xCpl) str += ' - ' + end.xCpl;
             if (end.xBairro) str += ', ' + end.xBairro;
@@ -6679,16 +6765,24 @@
             } else {
                 document.getElementById('lbl-sem-validade').style.display = 'none';
             }
+            if (2 == 5) { //nferetorno.flstatus
+                STAUTS_NFSE='CANCELADA';
+            }
             if (STAUTS_NFSE) {
                 document.getElementById('ambiente').innerText = STAUTS_NFSE;
                 document.getElementById('ambiente').style.display = 'block';
             } else {
                 document.getElementById('ambiente').style.display = 'none';
             }
-
+            var url;
+            if (NFSe?.infNFSe?.DPS?.infDPS?.tpAmb == 2) {
+            url = "https://www.producaorestrita.nfse.gov.br/ConsultaPublica/?tpc=1&chave=";
+            } else {
+            url = "https://www.nfse.gov.br/ConsultaPublica/?tpc=1&chave=";
+            }
             document.getElementById("qr-code-img").innerHTML = "";
             qr = new QRCode(document.getElementById("qr-code-img"), {
-                text: "https://www.nfse.gov.br/ConsultaPublica/?tpc=1&chave=" + NFSe.infNFSe['@attributes'].Id.replace('NFS', ''),
+                text: url + NFSe.infNFSe['@attributes'].Id.replace('NFS', ''),
                 width: 80,
                 height: 80,
                 colorDark: "#000000",
@@ -6705,8 +6799,8 @@
 
             setV('val-emi-mun-cabecalho', inf?.xLocEmi);
             setV('val-emi-uf-cabecalho', inf?.emit?.enderNac?.UF);
-            setV('val-ambiente-gerador', dps?.tpAmb);
-            setV('val-tipo-ambiente', dps?.tpAmb == 2 ? "Homologação" : "Produção");
+            setV('val-ambiente-gerador', (inf?.ambGer == 2 ? "Sistema Nacional" : ""));
+            setV('val-tipo-ambiente', (dps?.tpAmb == 2 ? "Homologação" : "Produção"));
 
             setV('val-chave-acesso', inf?.['@attributes']?.Id?.replace('NFS', ''));
             setV('val-numero-nfse', inf?.nNFSe);
@@ -6718,7 +6812,7 @@
             setV('val-serie-dps', dps?.serie);
             setV('val-emissao-dps', dps?.dhEmi ? dps.dhEmi.split('T')[0].split('-').reverse().join('/') + ' ' + dps.dhEmi.split('T')[1].split('-')[0] : '-');
             const fin = dps?.IBSCBS?.finNFSe;
-            setV('val-finalidade-dps', fin ? (json_finNFSe[parseInt(fin)] || fin + ' - Desconhecido') : '-');
+            setV('val-finalidade-dps', fin + " - " + (fin ? (json_finNFSe[parseInt(fin)] || fin + ' - Desconhecido') : '-'));
             // Emitente
             const emit = inf?.emit;
             const emitEnd = emit?.enderNac;
@@ -6733,7 +6827,7 @@
             setV('val-emi-cep', fmtCEP(emitEnd?.CEP));
             setV('val-emi-endereco', fmtEndereco(emitEnd));
             setV('val-emi-email', emit?.email || '-');
-            setV('val-emi-sn', prest?.regTrib?.opSimpNac == 1 ? 'Optante' : 'Não Optante');
+            setV('val-emi-sn', prest?.regTrib?.opSimpNac + ' - ' + (prest?.regTrib?.opSimpNac == 1 ? 'Não Optante' : 'Optante'));
             setV('val-emi-regime-sn', dps?.regime_sn || '-');
 
             // Variáveis auxiliares para facilitar o mapeamento
@@ -6776,7 +6870,7 @@
             }
 
             // Oculta/Exibe Destinatário
-            let isDestMesmoTomador = false;
+            var isDestMesmoTomador = false;
             if (dest && toma) {
                 if (dest.CNPJ && toma.CNPJ && dest.CNPJ === toma.CNPJ) isDestMesmoTomador = true;
                 else if (dest.CPF && toma.CPF && dest.CPF === toma.CPF) isDestMesmoTomador = true;
@@ -6846,17 +6940,23 @@
 
             // Serviço Prestado
             if (serv) {
-                setV('val-serv-cod-nac', serv.cServ?.cTribNac || '-');
-                setV('val-serv-cod-mun', serv.cServ?.cTribMun || '-');
-                setV('val-serv-nbs', serv.cServ?.cNBS || '-');
-                let locPrestStr = '-';
-                if (serv.locPrest?.cLocPrestacao) {
-                    locPrestStr = (json_cidade_ibge_nome[serv.locPrest.cLocPrestacao] || serv.locPrest.cLocPrestacao) + ' / BR';
+                setV('val-serv-cod-nac', fmtcTribNac(serv.cServ?.cTribNac));
+                setV('val-serv-cod-mun', fmtcTribMun(serv.cServ?.cTribMun));
+                setV('val-serv-nbs', fmtNBS(serv.cServ?.cNBS));
+                var locPrestStr = '-';
+                if (serv.locPrest?.cPaisPrestacao) {
+                    locPrestStr = (json_cidade_ibge_nome[serv.locPrest.cLocPrestacao] || serv.locPrest.cLocPrestacao) + ' / ' + serv.locPrest.cPaisPrestacao;
+                } else {
+                    locPrestStr = (json_cidade_ibge_nome[serv.locPrest.cLocPrestacao] || serv.locPrest.cLocPrestacao) + ' / ' + 'BR';
                 }
                 setV('val-serv-local', locPrestStr);
+                //setV('val-trib-mun-incidencia', locPrestStr);
                 setV('val-serv-desc-cod', NFSe.infNFSe.xTribNac || '-');
                 setV('val-serv-descricao', serv.cServ?.xDescServ || '-');
-                setV('val-info-comp', serv.infoCompl?.xInfComp || '-');
+                if (serv.infoCompl?.xInfComp) {
+                    document.getElementById('bloco-val-info-comp').style.display = 'block';
+                    setV('val-info-comp', serv.infoCompl.xInfComp ? serv.infoCompl.xInfComp : '-');
+                }
             }
 
             // Tributação Municipal
@@ -6868,9 +6968,10 @@
                 const dict_tribISSQN = { '1': '1 - Operação tributável', '2': '2 - Exportação de serviço', '3': '3 - Isenção', '4': '4 - Imunidade', '5': '5 - Exigibilidade Suspensa Judicial', '6': '6 - Exigibilidade Suspensa Administrativa' };
                 setV('val-trib-mun-tipo', dict_tribISSQN[tribMun.tribISSQN] || tribMun.tribISSQN || '-');
 
-                let locIncidStr = '-';
-                if (tribMun.cLocIncid) {
-                    locIncidStr = (json_cidade_ibge_nome[tribMun.cLocIncid] || tribMun.cLocIncid) + ' / BR';
+
+                var locIncidStr = '-';
+                if (inf?.cLocIncid) {
+                    locIncidStr = (json_cidade_ibge_nome[inf.cLocIncid]) + ' / BR' || inf?.xLocIncid;
                 }
                 setV('val-trib-mun-incidencia', locIncidStr);
 
@@ -6912,9 +7013,11 @@
                 setM('val-trib-fed-cp', trib.tribFed.cp?.vCP || '-');
                 setM('val-trib-fed-cs', trib.tribFed.csll?.vCSLL || '-');
                 // Tratando "desc-cs" como "INSS" já que é a única retenção federal comum ausente (Contribuição Social)
-                setM('val-trib-fed-desc-cs', trib.tribFed.inss?.vINSS || '-');
-                setM('val-trib-fed-pis', trib.tribFed.piscofins?.vPis || '-');
-                setM('val-trib-fed-cofins', trib.tribFed.piscofins?.vCofins || '-');
+                setV('val-trib-fed-desc-cs',String(trib.tribFed.piscofins?.tpRetPisCofins) +" - "+ json_RetPisCofins[trib.tribFed.piscofins?.tpRetPisCofins] || "" );
+                //setM('val-trib-fed-desc-cs', trib.tribFed.inss?.vINSS || '-');
+
+                setM('val-trib-fed-pis', (trib.tribFed.piscofins?.tpRetPisCofins == 1 ) ? '-' : trib.tribFed.piscofins?.vPis || '-');
+                setM('val-trib-fed-cofins', (trib.tribFed.piscofins?.tpRetPisCofins == 1 ) ? '-' : trib.tribFed.piscofins?.vCofins || '-');
             } else {
                 ['val-trib-fed-irrf', 'val-trib-fed-cp', 'val-trib-fed-cs', 'val-trib-fed-desc-cs', 'val-trib-fed-pis', 'val-trib-fed-cofins'].forEach(id => setM(id, '-'));
             }
@@ -6932,10 +7035,10 @@
                 const cClassTribStr = dpsIbscbs?.valores?.trib?.gIBSCBS?.cClassTrib || '-';
                 setV('val-ibscbs-cst', cstStr + ' / ' + cClassTribStr);
 
-                const indOpStr = dpsIbscbs?.cIndOp || '-';
-                const codIbgeStr = ibscbs.cLocalidadeIncid || '-';
-                let locIncidStr = ibscbs.xLocalidadeIncid || '-';
-                let ufStr = '-';
+                const indOpStr = fmtcIndOp(dpsIbscbs?.cIndOp) || '-';
+                const codIbgeStr = fmtIBGE(ibscbs.cLocalidadeIncid) || '-';
+                var locIncidStr = ibscbs.xLocalidadeIncid || '-';
+                var ufStr = '-';
                 if (ibscbs.cLocalidadeIncid) {
                     const fullName = json_cidade_ibge_nome[ibscbs.cLocalidadeIncid];
                     if (fullName) {
@@ -6955,7 +7058,7 @@
                 const mun = ibscbs.valores?.mun;
                 const fed = ibscbs.valores?.fed;
 
-                setV('val-ibscbs-red-aliq', `${fmtPct(uf?.pRedAliqUF || mun?.pRedAliqMun)} / ${fmtPct(fed?.pRedAliqCBS)}`);
+                setV('val-ibscbs-red-aliq', `${fmtPct(uf?.pRedAliqUF)} / ${fmtPct(mun?.pRedAliqMun)} / ${fmtPct(fed?.pRedAliqCBS)}`);
                 setV('val-ibscbs-aliq-uf-mun', `${fmtPct(uf?.pIBSUF)} / ${fmtPct(mun?.pIBSMun)}`);
 
                 setV('val-ibscbs-efet-mun', fmtPct(mun?.pAliqEfetMun));
@@ -6984,7 +7087,7 @@
             const descCond = trib?.tribMun?.vDescCond || '-';
             setM('val-tot-desc-cond', descCond);
             
-            let totRetencoes = 0;
+            var totRetencoes = 0;
             if (NFSe.infNFSe.valores?.vTotalRet !== undefined) {
                 totRetencoes = parseFloat(NFSe.infNFSe.valores.vTotalRet);
             } else {
@@ -7017,7 +7120,7 @@
             setM('val-tot-retencoes', totRetencoes > 0 ? totRetencoes : '-');
             setM('val-tot-liquido', NFSe.infNFSe.valores?.vLiq || '-');
 
-            let total_ibscbs_num = 0;
+            var total_ibscbs_num = 0;
             if (NFSe.infNFSe.IBSCBS?.totCIBS) {
                 const ibs = parseFloat(NFSe.infNFSe.IBSCBS.totCIBS.gIBS?.vIBSTot || 0);
                 const cbs = parseFloat(NFSe.infNFSe.IBSCBS.totCIBS.gCBS?.vCBS || 0);
@@ -7028,7 +7131,7 @@
             setM('val-tot-ibscbs', total_ibscbs_num > 0 ? total_ibscbs_num : '-');
             
             const vLiq = parseFloat(NFSe.infNFSe.valores?.vLiq || 0);
-            let valTotGeral = vLiq;
+            var valTotGeral = vLiq;
             if (total_ibscbs_num > 0) {
                 valTotGeral += total_ibscbs_num;
             }
@@ -7036,21 +7139,20 @@
 
             // Info Complementar (Totais Aproximados)
             if (trib?.totTrib?.vTotTrib) {
-                setM('val-aprox-fed', trib.totTrib.vTotTrib.vTotTribFed || '-');
-                setM('val-aprox-est', trib.totTrib.vTotTrib.vTotTribEst || '-');
-                setM('val-aprox-mun', trib.totTrib.vTotTrib.vTotTribMun || '-');
-				document.getElementById('bloco-trib-ibpt').style.display = 'none';
+                document.getElementById('val-aprox-fed').innerText= 'R$ ' + parseFloat(trib.totTrib.vTotTrib.vTotTribFed || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById('val-aprox-est').innerText= 'R$ ' + parseFloat(trib.totTrib.vTotTrib.vTotTribEst || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById('val-aprox-mun').innerText= 'R$ ' + parseFloat(trib.totTrib.vTotTrib.vTotTribMun || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             } else if (trib?.totTrib?.pTotTrib) {
                 const vServAprox = parseFloat(valores?.vServPrest?.vServ || 0);
                 const calcAprox = (perc) => {
-                    if (!perc) return '-';
+                    if (!perc) return 0;
                     const p = parseFloat(perc);
-                    if (isNaN(p) || p <= 0) return '-';
+                    if (isNaN(p) || p <= 0) return 0;
                     return (vServAprox * (p / 100)).toFixed(2);
                 };
-                setM('val-aprox-fed', calcAprox(trib.totTrib.pTotTrib.pTotTribFed));
-                setM('val-aprox-est', calcAprox(trib.totTrib.pTotTrib.pTotTribEst));
-                setM('val-aprox-mun', calcAprox(trib.totTrib.pTotTrib.pTotTribMun));
+                document.getElementById('val-aprox-fed').innerText= 'R$ ' + parseFloat(calcAprox(trib.totTrib.pTotTrib.pTotTribFed)).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById('val-aprox-est').innerText= 'R$ ' + parseFloat(calcAprox(trib.totTrib.pTotTrib.pTotTribEst)).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                document.getElementById('val-aprox-mun').innerText= 'R$ ' + parseFloat(calcAprox(trib.totTrib.pTotTrib.pTotTribMun)).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             } else {
                 setM('val-aprox-fed', '-');
                 setM('val-aprox-est', '-');
@@ -7068,8 +7170,8 @@
 
         // Exibir a div principal
         //document.getElementById('nfse').style.display = 'block';
-        nfse.style.display = 'contents';
+        //nfse.style.display = 'contents';
+        nfse.style.display = 'block';
     </script>
 </body>
-
 </html>
