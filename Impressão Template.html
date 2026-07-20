@@ -7125,22 +7125,25 @@
             setM('val-tot-liquido', NFSe.infNFSe.valores?.vLiq || '-');
 
             var total_ibscbs_num = 0;
-            if (NFSe.infNFSe.IBSCBS?.totCIBS) {
-                const ibs = parseFloat(NFSe.infNFSe.IBSCBS.totCIBS.gIBS?.vIBSTot || 0);
-                const cbs = parseFloat(NFSe.infNFSe.IBSCBS.totCIBS.gCBS?.vCBS || 0);
-                if (ibs > 0 || cbs > 0) {
-                    total_ibscbs_num = ibs + cbs;
-                }
-            }
+			if (dps?.dCompet?.split('-')[0] != '2026') {
+				if (NFSe.infNFSe.IBSCBS?.totCIBS) {
+					const ibs = parseFloat(NFSe.infNFSe.IBSCBS.totCIBS.gIBS?.vIBSTot || 0);
+					const cbs = parseFloat(NFSe.infNFSe.IBSCBS.totCIBS.gCBS?.vCBS || 0);
+					if (ibs > 0 || cbs > 0) {
+						total_ibscbs_num = ibs + cbs;
+					}
+				}
+			}
             setM('val-tot-ibscbs', total_ibscbs_num > 0 ? total_ibscbs_num : '-');
             
-            const vLiq = parseFloat(NFSe.infNFSe.valores?.vLiq || 0);
-            var valTotGeral = vLiq;
-            if (NFSe.infNFSe?.IBSCBS?.totCIBS?.vTotNF) {
-				valTotGeral = NFSe.infNFSe.IBSCBS.totCIBS.vTotNF;
-            } else if (total_ibscbs_num > 0) {
-				//2027+
-                valTotGeral += total_ibscbs_num;
+            var valTotGeral = parseFloat(NFSe.infNFSe.valores?.vLiq || 0);
+			if (NFSe.infNFSe?.IBSCBS?.totCIBS?.vTotNF) {
+				valTotGeral = parseFloat(NFSe.infNFSe.IBSCBS.totCIBS.vTotNF);
+            } else if (total_ibscbs_num > 0 ) {
+				if (dps?.dCompet?.split('-')[0] != '2026') {
+					//2027+
+					valTotGeral += total_ibscbs_num;
+				}
             }
             setM('val-tot-geral', valTotGeral > 0 ? valTotGeral : '-');
 
