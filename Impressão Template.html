@@ -7136,7 +7136,10 @@
             
             const vLiq = parseFloat(NFSe.infNFSe.valores?.vLiq || 0);
             var valTotGeral = vLiq;
-            if (total_ibscbs_num > 0) {
+            if (NFSe.infNFSe?.IBSCBS?.totCIBS?.vTotNF) {
+				valTotGeral = NFSe.infNFSe.IBSCBS.totCIBS.vTotNF;
+            } else if (total_ibscbs_num > 0) {
+				//2027+
                 valTotGeral += total_ibscbs_num;
             }
             setM('val-tot-geral', valTotGeral > 0 ? valTotGeral : '-');
